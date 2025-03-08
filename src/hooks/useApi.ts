@@ -8,7 +8,7 @@ import {
   SendMessageParams,
 } from "@/types/apiTypes";
 import { UpdateRewardData } from "@/components/TableLight";
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "https://salesman-tracking-app.onrender.com";
 
 const isTokenExpired = (token: string) => {
   try {
