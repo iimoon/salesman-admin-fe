@@ -24,7 +24,7 @@ export default function CommonPage() {
             <div className="ml-64 flex p-6">
                 <div className="flex-1">
                     <Routes>
-                        <Route path="/" element={<ManageSaleMan />} />
+                        <Route path="/dashboard" element={<ManageSaleMan />} />
                         <Route path="/dashboard/manage-salesman" element={<SalesManList />} />
                         <Route path="/dashboard/client" element={<Client />} />
                         <Route path="/dashboard/products" element={<Products />} />

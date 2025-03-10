@@ -23,7 +23,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route
           path="/*"
-          element={isAuthenticated ? <CommonPage /> : <Navigate to="/login" />}
+          element={isAuthenticated ? <CommonPage /> : <Navigate to="/login" replace  />}
         />
       </Routes>
     </Router>

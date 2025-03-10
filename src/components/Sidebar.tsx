@@ -51,7 +51,7 @@ export default function Sidebar() {
       <ScrollArea className="flex-1 overflow-auto">
         <ul className="space-y-3 p-4">
           {[
-            { path: "/", label: "Overview" },
+            { path: "/dashboard", label: "Overview" },
             { path: "/dashboard/manage-salesman", label: "Manage Salesmen" },
             { path: "/dashboard/client", label: "Manage Client" },
             { path: "/dashboard/products", label: "Manage Products" },

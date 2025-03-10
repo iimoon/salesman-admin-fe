@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useApi } from "../../hooks/useApi";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
+import { useAuth } from "@/hooks/useAuth"; 
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
 
@@ -13,9 +13,9 @@ export default function Login() {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);  
     const { login } = useApi();
-    const navigate = useNavigate();
+    const {loginAuth} = useAuth();
+    
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -23,16 +23,14 @@ export default function Login() {
 
         try {
             const response = await login({ name, password });
-            console.log(response);
-
             const token = response;
-
             if (token) {
                 localStorage.setItem("token", token);
-                
+                loginAuth(token);
                 toast.success("Login successful! Redirecting...");
-                setIsLoggedIn(true); 
-
+                setTimeout(() => {
+                    window.location.href = "/dashboard";
+                }, 300); 
             } else {
                 toast.error("Login failed. No token received.");
             }
@@ -42,13 +40,6 @@ export default function Login() {
             setIsLoading(false);
         }
     };
-
-    
-    useEffect(() => {
-        if (isLoggedIn) {
-            navigate("/");  
-        }
-    }, [isLoggedIn, navigate]);
 
     return (
         <div className="flex h-screen w-full">
