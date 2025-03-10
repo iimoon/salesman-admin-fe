@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export const useAuth = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
   const setAuthHeader = (token: string | null) => {
@@ -10,18 +10,6 @@ export const useAuth = () => {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     } else {
       delete axios.defaults.headers.common["Authorization"];
-    }
-  };
-
-  const checkAuth = () => {
-    const token = localStorage.getItem("token");
-    if (token && !isTokenExpired(token)) {
-      setIsAuthenticated(true);
-      setAuthHeader(token);
-    } else {
-      setIsAuthenticated(false);
-      localStorage.removeItem("token");
-      setAuthHeader(null);
     }
   };
 
@@ -35,10 +23,42 @@ export const useAuth = () => {
     }
   };
 
+  const checkAuth = () => {
+    const token = localStorage.getItem("token");
+
+    if (token && !isTokenExpired(token)) {
+      setAuthHeader(token);
+      setIsAuthenticated(true);
+    } else {
+      localStorage.removeItem("token");
+      setAuthHeader(null);
+      setIsAuthenticated(false);
+    }
+  };
+
+  const loginAuth = (token: string) => {
+    localStorage.setItem("token", token);
+    setAuthHeader(token);
+    setIsAuthenticated(true);
+  };
+
   useEffect(() => {
     checkAuth();
     setLoading(false);
   }, []);
 
-  return { isAuthenticated, checkAuth, loading };
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === "token") {
+        checkAuth();
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
+  return { isAuthenticated, checkAuth, loginAuth, loading };
 };
