@@ -59,7 +59,7 @@ export default function Reports() {
     };
 
     return (
-        <div className="bg-white h-[95vh] rounded-tl-lg rounded-bl-lg p-10 px-30 w-[1220px]">
+        <div className="bg-white h-[calc(95vh-1.5rem)] rounded-tl-lg rounded-bl-lg p-10 px-10 overflow-auto">
             <PageTitle title="Reports" />
             <div className="mt-10">
                 <div className="w-[800px] bg-[#D0E4FF] p-8 rounded-lg h-sm">

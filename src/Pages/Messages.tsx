@@ -112,7 +112,7 @@ export default function Messages() {
       };
 
     return (
-        <div className="bg-white h-[95vh] rounded-tl-lg rounded-bl-lg p-10 px-30 w-[1220px]">
+        <div className="bg-white h-[calc(95vh-1.5rem)] rounded-tl-lg rounded-bl-lg p-4 px-30 w-[55vw]">
             {loading ? (
                 <div className="flex gap-4">
                     <div className="w-72">

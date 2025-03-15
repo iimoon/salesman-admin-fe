@@ -18,10 +18,9 @@ import Messages from "./Messages";
 
 export default function CommonPage() {
     return (
-        <div className="flex h-screen" style={{ backgroundColor: "rgba(9, 68, 151, 1)" }}>
-            
+        <div className="flex h-screen bg-[#094497]">
             <Sidebar />
-            <div className="ml-64 flex p-6">
+            <div className="ml-64 flex p-4 overflow-auto">
                 <div className="flex-1">
                     <Routes>
                         <Route path="/dashboard" element={<ManageSaleMan />} />

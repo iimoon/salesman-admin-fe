@@ -37,7 +37,7 @@ const ManageSaleMan = () => {
     }, []); 
 
     return (
-        <div className="bg-white h-[95vh] rounded-tl-lg rounded-bl-lg p-10 px-30 w-[1220px]">
+        <div className="bg-white h-[calc(95vh-1.5rem)] rounded-tl-lg rounded-bl-lg p-10 px-10 overflow-auto">
             <PageTitle title="Metrics Overview" />
             <div className="flex flex-col gap-6 mt-15">
                 <div className="flex gap-6">

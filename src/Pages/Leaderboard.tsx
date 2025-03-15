@@ -104,7 +104,7 @@ export default function Leaderboard() {
     };
 
     return (
-        <div className="bg-white h-[95vh] rounded-tl-lg rounded-bl-lg p-10 px-30 w-[1220px]">
+        <div className="bg-white h-[calc(95vh-1.5rem)] rounded-tl-lg rounded-bl-lg p-10 px-10 overflow-auto">
             <div className="overflow-y-auto max-h-full">
                 <PageTitle title="Leaderboard Overview" />
 
